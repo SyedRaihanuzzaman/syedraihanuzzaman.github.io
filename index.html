@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syed Raihanuzzaman — Flutter Developer</title>
+<meta name="description" content="Syed Raihanuzzaman is a Flutter developer building real-time, Firebase-backed cross-platform apps for iOS and Android.">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg: #0a0a13;
+    --bg-soft: #101020;
+    --surface: #15152a;
+    --surface-2: #1b1b34;
+    --text: #f4f2ff;
+    --muted: #9491b4;
+    --border: rgba(255,255,255,0.09);
+    --c1: #7c5cfc;
+    --c2: #33d2ff;
+    --c3: #ff6fa5;
+    --c4: #ffb648;
+    --radius: 20px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--text); font-family:'Inter', sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  h1,h2,h3, .logo, .stat-num{
+    font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.02em; line-height:1.08;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; } }
+
+  header{ position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:rgba(10,10,19,0.72); border-bottom:1px solid var(--border); }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; max-width:1180px; margin:0 auto; }
+  .logo{ display:inline-flex; align-items:center; gap:10px; font-size:1.15rem; }
+  .brand-mark{ width:22px; height:22px; border-radius:7px; display:grid; place-items:center; background:linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); box-shadow:0 0 18px rgba(124,92,252,0.45); font-size:0.68rem; font-weight:700; color:#0b0916; letter-spacing:-0.08em; }
+  .logo span{ background:linear-gradient(120deg, var(--c1), var(--c2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .nav-links{ display:flex; gap:36px; font-size:0.95rem; color:var(--muted); }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{ padding:10px 20px; border-radius:100px; background:var(--surface-2); border:1px solid var(--border); font-size:0.9rem; font-weight:500; }
+  .nav-cta:hover{ border-color:rgba(255,255,255,0.25); }
+  .menu-btn{ display:none; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer; line-height:1; }
+
+  .mobile-menu{ display:none; flex-direction:column; gap:2px; padding:8px 32px 20px; border-top:1px solid var(--border); }
+  .mobile-menu a{ padding:14px 0; font-size:1.05rem; color:var(--text); border-bottom:1px solid var(--border); }
+  .mobile-menu a:last-child{ border-bottom:none; }
+  .mobile-menu.open{ display:flex; }
+
+  @media (max-width:800px){ .nav-links{ display:none; } .nav-cta{ display:none; } .menu-btn{ display:block; } }
+  @media (min-width:801px){ .mobile-menu{ display:none !important; } }
+
+  .hero{ position:relative; padding:96px 0 110px; overflow:hidden; }
+  .mesh{ position:absolute; z-index:0; pointer-events:none; top:-220px; right:-220px; width:760px; height:760px; filter:blur(70px); opacity:0.65; }
+  .mesh div{ position:absolute; border-radius:50%; }
+  .mesh .b1{ width:420px; height:420px; background:var(--c1); top:40px; left:120px; }
+  .mesh .b2{ width:380px; height:380px; background:var(--c2); top:220px; right:30px; }
+  .mesh .b3{ width:320px; height:320px; background:var(--c3); bottom:20px; left:260px; }
+
+  .hero-inner{ position:relative; z-index:1; max-width:680px; }
+  .kicker{ display:inline-flex; align-items:center; gap:8px; font-size:0.9rem; color:var(--muted); margin-bottom:24px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--c2); box-shadow:0 0 12px var(--c2); }
+
+  .hero h1{ font-size:clamp(2.6rem, 6vw, 4.4rem); margin-bottom:22px; }
+  .hero h1 .grad{ background:linear-gradient(120deg, var(--c1), var(--c2) 60%, var(--c3)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.lead{ font-size:1.15rem; color:var(--muted); max-width:520px; margin-bottom:38px; }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:64px; }
+  .btn{ padding:14px 26px; border-radius:100px; font-weight:500; font-size:0.98rem; display:inline-block; transition:transform .15s ease, box-shadow .15s ease; }
+  .btn-primary{ background:linear-gradient(120deg, var(--c1), var(--c2)); color:#08060f; font-weight:600; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(124,92,252,0.55); }
+  .btn-ghost{ border:1px solid var(--border); color:var(--text); }
+  .btn-ghost:hover{ border-color:rgba(255,255,255,0.3); transform:translateY(-2px); }
+
+  .stats{ display:flex; gap:48px; flex-wrap:wrap; }
+  .stat-num{ font-size:1.9rem; }
+  .stat-label{ color:var(--muted); font-size:0.9rem; }
+
+  section{ padding:96px 0; }
+  .section-head{ max-width:560px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(1.8rem, 3.6vw, 2.5rem); margin-bottom:14px; }
+  .section-head p{ color:var(--muted); font-size:1.05rem; }
+
+  #work{ background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .projects{ display:grid; grid-template-columns:repeat(2, 1fr); gap:28px; }
+  @media (max-width:760px){ .projects{ grid-template-columns:1fr; } }
+
+  .project-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:32px; display:flex; flex-direction:column; gap:24px; }
+  .project-card.wide{ grid-column:1 / -1; flex-direction:row; align-items:center; gap:40px; }
+  @media (max-width:760px){ .project-card.wide{ flex-direction:column; } }
+
+  .phone{ width:150px; height:300px; flex-shrink:0; border-radius:28px; background:var(--surface-2); border:1px solid var(--border); padding:8px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.6); }
+  .screen{ width:100%; height:100%; border-radius:20px; display:flex; flex-direction:column; justify-content:space-between; padding:18px 14px; position:relative; overflow:hidden; }
+  .screen::after{ content:""; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 55%); }
+  .screen-title{ font-family:'Space Grotesk',sans-serif; font-size:0.85rem; font-weight:600; position:relative; z-index:1; color:#0b0916; }
+  .screen-dots{ display:flex; gap:6px; position:relative; z-index:1; }
+  .screen-dots span{ width:26px; height:26px; border-radius:8px; background:rgba(11,9,22,0.18); }
+
+  .p1 .screen{ background:linear-gradient(160deg, var(--c1), var(--c2)); }
+  .p2 .screen{ background:linear-gradient(160deg, var(--c3), var(--c4)); }
+  .p3 .screen{ background:linear-gradient(160deg, var(--c2), var(--c3)); }
+  .p4 .screen{ background:linear-gradient(160deg, var(--c4), var(--c1)); }
+
+  .project-body h3{ font-size:1.3rem; margin-bottom:10px; }
+  .project-body p{ color:var(--muted); margin-bottom:18px; font-size:0.98rem; }
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .tag{ font-size:0.8rem; padding:5px 12px; border-radius:100px; background:var(--surface-2); color:var(--muted); border:1px solid var(--border); }
+  .project-link{ font-size:0.95rem; font-weight:500; color:var(--c2); }
+  .project-link:hover{ text-decoration:underline; }
+  .project-links{ display:flex; gap:18px; flex-wrap:wrap; }
+  .project-note{ font-size:0.9rem; color:var(--muted); font-style:italic; }
+
+  .skill-groups{ display:flex; flex-direction:column; gap:28px; }
+  .skill-row{ display:grid; grid-template-columns:180px 1fr; gap:24px; padding:24px 0; border-top:1px solid var(--border); }
+  @media (max-width:640px){ .skill-row{ grid-template-columns:1fr; gap:12px; } }
+  .skill-row-label{ color:var(--muted); font-size:0.95rem; padding-top:4px; }
+  .pill-set{ display:flex; flex-wrap:wrap; gap:10px; }
+  .pill{ padding:9px 18px; border-radius:100px; font-size:0.92rem; background:var(--surface); border:1px solid var(--border); }
+
+  #about{ background:var(--bg-soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .about-grid{ display:grid; grid-template-columns:340px minmax(0,1fr); gap:54px; align-items:center; max-width:1100px; margin:0 auto; }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; gap:28px; } }
+  .avatar{ width:100%; max-width:340px; aspect-ratio:1; border-radius:24px; background:linear-gradient(150deg, #dfe3eb, #d5d5d9); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.08); box-shadow:0 18px 32px rgba(0,0,0,0.18); }
+  .avatar span{ font-family:'Space Grotesk',sans-serif; font-size:3.5rem; font-weight:700; color:rgba(11,9,22,0.35); }
+  .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .about-text{ display:flex; flex-direction:column; justify-content:center; }
+  .about-text p{ color:var(--muted); font-size:1.05rem; line-height:1.6; margin-bottom:18px; max-width:620px; }
+  .about-text a{ color:var(--c2); font-weight:500; }
+  .about-text a:hover{ text-decoration:underline; }
+
+  #contact{ text-align:left; }
+  .contact-box{ background:var(--surface); border:1px solid var(--border); border-radius:28px; padding:64px 48px; position:relative; overflow:hidden; }
+  .contact-box::before{ content:""; position:absolute; width:420px; height:420px; background:radial-gradient(circle, var(--c1), transparent 70%); opacity:0.35; filter:blur(40px); top:-160px; right:-120px; }
+  .contact-box h2{ font-size:clamp(1.8rem,4vw,2.6rem); position:relative; z-index:1; margin-bottom:16px; max-width:500px; }
+  .contact-box p{ color:var(--muted); max-width:460px; position:relative; z-index:1; margin-bottom:32px; }
+  .contact-actions{ display:flex; gap:16px; flex-wrap:wrap; position:relative; z-index:1; }
+
+  footer{ padding:40px 0 60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .foot-links{ display:flex; gap:28px; color:var(--muted); font-size:0.92rem; }
+  .foot-links a:hover{ color:var(--text); }
+  .foot-note{ color:var(--muted); font-size:0.85rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">
+      <span class="brand-mark" aria-hidden="true">SR</span>
+      <span>Syed <span>Raihanuzzaman</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Let's talk</a>
+    <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">☰</button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#work" onclick="closeMenu()">Work</a>
+    <a href="#skills" onclick="closeMenu()">Skills</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="mesh"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div>
+    <div class="wrap hero-inner">
+      <div class="kicker"><span class="dot"></span> Currently building at Join Venture AI</div>
+      <h1>I build <span class="grad">fluid, native-feeling</span> apps with a single codebase.</h1>
+      <p class="lead">Syed Raihanuzzaman — a Flutter developer focused on scalable mobile architecture and clean code, from real-time chat systems to Firebase-backed apps live on the App Store and Google Play.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-primary">See my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+      <div class="stats">
+        <div><div class="stat-num">12+</div><div class="stat-label">projects built</div></div>
+        <div><div class="stat-num">5+</div><div class="stat-label">published apps</div></div>
+        <div><div class="stat-num">2</div><div class="stat-label">platforms per build</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p>A few projects I've shipped — from solo apps to features built inside larger teams.</p>
+      </div>
+      <div class="projects">
+
+        <div class="project-card wide p1">
+          <div class="phone">
+            <div class="screen">
+              <div class="screen-title">Pearii</div>
+              <div class="screen-dots"><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Pearii — Women's Health &amp; Wellness Platform</h3>
+            <p>A cross-platform app delivering AI-powered health guidance and personalized wellness support for women, with menstrual cycle tracking, tailored fitness and nutrition modules, and a companion admin panel for content and user management.</p>
+            <div class="tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">REST API</span>
+              <span class="tag">AI Chatbot</span>
+              <span class="tag">WebSocket</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">iOS &amp; Android</span>
+            </div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/apps/details?id=com.pearii.health" class="project-link">Google Play</a>
+              <a href="https://apps.apple.com/us/app/pearii/id6785532553" class="project-link">App Store</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card p2">
+          <div class="phone" style="width:120px; height:240px;">
+            <div class="screen">
+              <div class="screen-title">Anexo</div>
+              <div class="screen-dots"><span></span></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Anexo — B2B Business Connection Platform</h3>
+            <p>A verified B2B networking app with OTP and document-based identity checks, switchable personal/business profiles, real-time chat over WebSockets, and an Offers &amp; Needs marketplace for direct proposals.</p>
+            <div class="tags"><span class="tag">Flutter</span><span class="tag">GetX</span><span class="tag">WebSocket</span><span class="tag">JWT</span></div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/apps/details?id=com.anexousa.app" class="project-link">Google Play</a>
+              <a href="https://apps.apple.com/us/app/anexo-b2b/id6787458141" class="project-link">App Store</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card p3">
+          <div class="phone" style="width:120px; height:240px;">
+            <div class="screen">
+              <div class="screen-title">MyClosely</div>
+              <div class="screen-dots"><span></span></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>MyClosely — Wardrobe Intelligence &amp; Social Styling</h3>
+            <p>A premium digital wardrobe and outfit-logging app with a camera-based closet scanner, a reactive styling preference tracker, and glassmorphic UI built with layered blur effects.</p>
+            <div class="tags"><span class="tag">Flutter</span><span class="tag">GetX</span><span class="tag">ScreenUtil</span></div>
+            <span class="project-note">In development</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What I work with</h2>
+        <p>The core toolkit I reach for day to day, plus the tools around it.</p>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-row">
+          <div class="skill-row-label">Languages</div>
+          <div class="pill-set">
+            <span class="pill">Dart</span>
+            <span class="pill">Java</span>
+            <span class="pill">Kotlin</span>
+  
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-label">Frameworks &amp; libraries</div>
+          <div class="pill-set">
+            <span class="pill">Flutter</span>
+            <span class="pill">GetX</span>
+            <span class="pill">REST API integration</span>
+            <span class="pill">WebSocket</span>
+            <span class="pill">Socket.IO</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-label">Mobile development</div>
+          <div class="pill-set">
+            <span class="pill">Cross-platform (iOS &amp; Android)</span>
+            <span class="pill">Responsive UI</span>
+            <span class="pill">MVC / MVVM</span>
+            <span class="pill">State management</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-label">Backend &amp; cloud</div>
+          <div class="pill-set">
+            <span class="pill">Firebase (FCM, storage)</span>
+            <span class="pill">RESTful APIs</span>
+            <span class="pill">JWT authentication</span>
+            <span class="pill">Firestore</span>
+            <span class="pill">SQLite</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-label">Tools</div>
+          <div class="pill-set">
+            <span class="pill">Git &amp; GitHub</span>
+            <span class="pill">Android Studio</span>
+            <span class="pill">VS Code</span>
+            <span class="pill">Postman</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="avatar"><img src="images/profile.png" alt="Syed Raihanuzzaman"></div>
+      <div class="about-text">
+        <h2 style="margin-bottom:20px; font-size:clamp(1.6rem,3vw,2.2rem);">About me</h2>
+        <p>I'm a Flutter developer focused on scalable mobile architecture and clean code — implementing MVC/MVVM patterns, integrating Firebase, and consuming third-party APIs to ship apps that feel fast and intuitive. As a Junior Flutter Developer at Join Venture AI since October 2025, I've built real-time chat systems over WebSocket for an AI chatbot and 1:1 messaging, added machine-learning-based face recognition and NID document verification, and managed end-to-end deployment to the Google Play Store and Apple App Store.</p>
+        <p>I graduated with a BSc in Computer Science and Engineering from Daffodil International University (2018–2022), and I'm comfortable working across the stack — from Dio-based REST layers and device hardware integration to agile collaboration with a team.</p>
+        <p>Based in Mohammadpur, Dhaka · <a href="tel:+8801703200602">01703200602</a> · <a href="mailto:syed.shawon04@gmail.com">syed.shawon04@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box">
+        <h2>Have an app in mind? Let's build it.</h2>
+        <p>I'm currently open to freelance projects and full-time roles. The fastest way to reach me is email.</p>
+        <div class="contact-actions">
+          <a href="mailto:syed.shawon04@gmail.com" class="btn btn-primary">syed.shawon04@gmail.com</a>
+          <a href="tel:+8801703200602" class="btn btn-ghost">01703200602</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+    <div class="foot-note">© <span id="year"></span> Syed Raihanuzzaman. Built with Flutter know-how, shipped as a website.</div>
+    <div class="foot-links">
+      <a href="[GitHub URL]">GitHub</a>
+      <a href="[LinkedIn URL]">LinkedIn</a>
+      <a href="[Twitter/X URL]">Twitter</a>
+      <a href="[pub.dev profile URL]">pub.dev</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const menuBtn = document.querySelector('.menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function toggleMenu(){
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuBtn.textContent = isOpen ? '✕' : '☰';
+  }
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.textContent = '☰';
+  }
+</script>
+
+</body>
+</html>
